@@ -1,6 +1,6 @@
 {
-  "name": "abp-filter-parser",
-  "version": "0.2.0",
+  "name": "@brigand/abp-filter-parser",
+  "version": "0.3.0",
   "main": "dist/src/abp-filter-parser.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
@@ -36,9 +36,6 @@
   "description": "",
   "dependencies": {
     "bloom-filter-js": "0.0.12"
-  },
-  "engines": {
-    "node": "~5.0"
   },
   "pre-commit": [
     "lint"
