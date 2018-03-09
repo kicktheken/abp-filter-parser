@@ -461,7 +461,13 @@ export function matchesFilter(parsedFilterData, input, contextParams = {}, cache
   // Check for a regex match
   if (parsedFilterData.isRegex) {
     if (!parsedFilterData.regex) {
-      parsedFilterData.regex = new RegExp(parsedFilterData.data);
+      try {
+        parsedFilterData.regex = new RegExp(parsedFilterData.data);
+      } catch (e) {
+        // Invalid regex, so give one that never matches reasonably
+        // This regex should also be super fast, as I understand it.
+        parsedFilterData.regex = /^a{10000}$/;
+      }
     }
     return parsedFilterData.regex.test(input);
   }
