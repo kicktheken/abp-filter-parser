@@ -1,6 +1,6 @@
 {
   "name": "@brigand/abp-filter-parser",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "dist/src/abp-filter-parser.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
