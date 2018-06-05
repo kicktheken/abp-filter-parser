@@ -1,8 +1,6 @@
 import * as BloomFilterJS from 'bloom-filter-js';
 import {badFingerprints, badSubstrings} from './badFingerprints.js';
 
-let fs = require('fs');
-
 /**
  * bitwise mask of different request types
  */
@@ -68,7 +66,7 @@ export function parseDomains(input, separator, options) {
 }
 
 if (!Array.prototype.includes) {
-  Array.prototype.includes = function(searchElement /*, fromIndex*/ ) {
+  Array.prototype.includes = function (searchElement /*, fromIndex*/) { // eslint-disable-line no-extend-native
     'use strict';
     var O = Object(this);
     var len = parseInt(O.length, 10) || 0;
@@ -86,8 +84,7 @@ if (!Array.prototype.includes) {
     var currentElement;
     while (k < len) {
       currentElement = O[k];
-      if (searchElement === currentElement ||
-         (searchElement !== searchElement && currentElement !== currentElement)) { // NaN !== NaN
+      if (searchElement === currentElement || searchElement !== searchElement && currentElement !== currentElement) { // NaN !== NaN
         return true;
       }
       k++;
@@ -535,10 +532,6 @@ function hasMatchingFilters(filterList, parsedFilterData, input, contextParams, 
       cachedInputData.matchedFilters[foundFilter.rawFilter].matches += 1;
     } else {
       cachedInputData.matchedFilters[foundFilter.rawFilter]  = { matches: 1 };
-    }
-
-    if (!process.browser) {
-      fs.writeFileSync('easylist-matches.json', JSON.stringify(cachedInputData.matchedFilters), 'utf-8');
     }
   }
   return !!foundFilter;
